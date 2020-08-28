@@ -1,21 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import Image from "./";
-
-const images = [
-  {
-    title: "Super",
-    imageUrl: "super url",
-  },
-  {
-    title: "Mega",
-    imageUrl: "mega url",
-  },
-  {
-    title: "Hyper",
-    imageUrl: "hyper url",
-  },
-];
+import { images } from "../../testData/index";
 
 const setup = (index) => {
   const nextMock = jest.fn();

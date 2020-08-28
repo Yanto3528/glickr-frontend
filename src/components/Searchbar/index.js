@@ -38,4 +38,4 @@ Searchbar.propTypes = {
   search: PropTypes.func.isRequired,
 };
 
-export default Searchbar;
+export default React.memo(Searchbar);

@@ -51,4 +51,4 @@ ImageList.propTypes = {
   setCurrentImageIndex: PropTypes.func.isRequired,
 };
 
-export default ImageList;
+export default React.memo(ImageList);

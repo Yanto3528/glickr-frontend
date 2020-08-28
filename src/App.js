@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useInView } from "react-intersection-observer";
 
@@ -9,6 +9,7 @@ import Searchbar from "./components/Searchbar";
 import ImageList from "./components/ImageList";
 import MainTitle from "./components/MainTitle";
 import LoadingIcon from "./components/LoadingIcon";
+import ErrorBoundary from "./components/ErrorBoundary";
 import Image from "./components/Image";
 
 import { Container } from "./styles/shared/Container";
@@ -29,60 +30,69 @@ const App = () => {
   );
 
   useEffect(() => {
+    // If the last element is enter the view and has more is equal to true then increment page number to fetch the next data
     if (inView && hasMore) {
       setPageNumber((prevPage) => prevPage + 1);
     }
   }, [ref, inView, hasMore]);
 
-  const searchByTags = (tags) => {
+  // For each of the function below, i use useCallback hook to prevent any unnessesary re rendering
+
+  // when the user submit a search form then set url to search url and set page number to 1 again
+  const searchByTags = useCallback((tags) => {
     setPageNumber(1);
     setUrl(`/api/images/search/${tags}`);
     setTitle(`Search results for: ${tags}`);
-  };
+  }, []);
 
-  const handleCloseImageSlider = () => {
+  // Close image viewer
+  const handleCloseImageSlider = useCallback(() => {
     setCurrentImageIndex(null);
-  };
+  }, []);
 
-  const prevImage = () => {
+  // Go to previous image on image viewer
+  const prevImage = useCallback(() => {
     if (currentImageIndex > 0) {
       setCurrentImageIndex((curImage) => curImage - 1);
     }
-  };
+  }, [currentImageIndex]);
 
-  const nextImage = () => {
+  // Go to next image on image viewer
+  const nextImage = useCallback(() => {
     if (currentImageIndex < data.length - 1) {
       setCurrentImageIndex((curImage) => curImage + 1);
     }
-  };
+  }, [currentImageIndex, data.length]);
 
   return (
-    <Container>
+    <Container data-testid="container">
       <Header />
       <MainTitle title="The best image source on the internet" />
       <Searchbar search={searchByTags} />
-      <ImageList
-        title={title}
-        images={data}
-        loading={loading}
-        ref={ref}
-        setCurrentImageIndex={setCurrentImageIndex}
-      />
-      {loading && <LoadingIcon />}
-      {error && (
-        <ErrorMessage center margin="10px 0">
-          Error getting data
-        </ErrorMessage>
-      )}
-      {currentImageIndex !== null && (
-        <Image
-          onClose={handleCloseImageSlider}
+      <ErrorBoundary>
+        <ImageList
+          title={title}
           images={data}
-          index={currentImageIndex}
-          next={nextImage}
-          prev={prevImage}
+          loading={loading}
+          ref={ref}
+          setCurrentImageIndex={setCurrentImageIndex}
         />
-      )}
+        {loading && <LoadingIcon />}
+        {error && (
+          <ErrorMessage center margin="10px 0">
+            Error getting data
+          </ErrorMessage>
+        )}
+        {currentImageIndex !== null && (
+          <Image
+            onClose={handleCloseImageSlider}
+            images={data}
+            index={currentImageIndex}
+            next={nextImage}
+            prev={prevImage}
+          />
+        )}
+      </ErrorBoundary>
     </Container>
   );
 };
