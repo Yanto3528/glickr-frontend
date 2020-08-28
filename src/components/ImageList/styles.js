@@ -7,6 +7,7 @@ export const ImageListContainer = styled.div`
     margin-bottom: 10px;
   }
 `;
+
 export const ImageGrid = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(3, 1fr);

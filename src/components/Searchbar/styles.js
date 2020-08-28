@@ -15,7 +15,8 @@ export const SearchbarInput = styled.input`
   }
 `;
 
-export const SearchIcon = styled.span`
+export const SearchIcon = styled.button`
+  outline: none;
   display: flex;
   align-items: center;
   justify-content: center;

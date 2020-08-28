@@ -5,10 +5,11 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { SearchbarForm, SearchbarInput, SearchIcon } from "./styles";
 
 const Searchbar = ({ search }) => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
     search(data.tags);
+    reset();
   };
   return (
     <div>
@@ -17,10 +18,10 @@ const Searchbar = ({ search }) => {
           type="text"
           placeholder="Search images by tags"
           name="tags"
-          ref={register}
+          ref={register({ required: true })}
         />
         <SearchIcon>
-          <AiOutlineSearch />
+          <AiOutlineSearch size="2rem" />
         </SearchIcon>
       </SearchbarForm>
     </div>

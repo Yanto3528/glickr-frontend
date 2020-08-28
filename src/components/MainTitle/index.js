@@ -1,12 +1,13 @@
 import React from "react";
 
 import { MainTitleContainer } from "./styles";
+import { Logo } from "../../styles/shared/Logo";
 
-const MainTitle = ({ title, subtitle }) => {
+const MainTitle = ({ title }) => {
   return (
     <MainTitleContainer>
-      <h1>{title}</h1>
-      <p>{subtitle}</p>
+      <Logo>Glickr</Logo>
+      <p>{title}</p>
     </MainTitleContainer>
   );
 };
