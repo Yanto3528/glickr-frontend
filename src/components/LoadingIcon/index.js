@@ -16,7 +16,7 @@ const spinnerVariants = {
 const LoadingIcon = (props) => {
   return (
     <SpinnerContainer>
-      <Spinner variants={spinnerVariants} animate="animate" />
+      <Spinner variants={spinnerVariants} animate="animate" {...props} />
     </SpinnerContainer>
   );
 };

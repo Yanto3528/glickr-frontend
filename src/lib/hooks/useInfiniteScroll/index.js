@@ -61,7 +61,7 @@ const useInfiniteScroll = (
     //eslint-disable-next-line
   }, [pageNumber, url]);
 
-  return { loading, error, hasMore, data };
+  return { setLoading, loading, error, hasMore, data };
 };
 
 export default useInfiniteScroll;

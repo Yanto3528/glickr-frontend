@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import { AiOutlineLeft, AiOutlineRight, AiOutlineClose } from "react-icons/ai";
 
 import {
@@ -18,6 +20,7 @@ const Image = ({ images, index, next, prev, onClose }) => {
             e.stopPropagation();
             prev();
           }}
+          data-testid="prev"
         >
           <AiOutlineLeft size="8rem" color="white" />
         </LeftArrow>
@@ -33,6 +36,7 @@ const Image = ({ images, index, next, prev, onClose }) => {
             e.stopPropagation();
             next();
           }}
+          data-testid="next"
         >
           <AiOutlineRight size="8rem" color="white" />
         </RightArrow>
@@ -41,17 +45,31 @@ const Image = ({ images, index, next, prev, onClose }) => {
   };
 
   return (
-    <Backdrop onClick={onClose}>
+    <Backdrop onClick={onClose} data-testid="backdrop">
       {renderLeftArrow()}
       <ImageContainer onClick={(e) => e.stopPropagation()}>
         <img src={images[index].imageUrl} alt={images[index].title} />
       </ImageContainer>
       {renderRightArrow()}
-      <CloseIcon onClick={onClose}>
+      <CloseIcon
+        onClick={(e) => {
+          e.stopPropagation();
+          onClose();
+        }}
+        data-testid="close"
+      >
         <AiOutlineClose size="4rem" color="white" />
       </CloseIcon>
     </Backdrop>
   );
+};
+
+Image.propTypes = {
+  images: PropTypes.array.isRequired,
+  index: PropTypes.number.isRequired,
+  next: PropTypes.func.isRequired,
+  prev: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 export default Image;

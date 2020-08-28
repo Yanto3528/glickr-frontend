@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { MainTitleContainer } from "./styles";
 import { Logo } from "../../styles/shared/Logo";
@@ -10,6 +11,10 @@ const MainTitle = ({ title }) => {
       <p>{title}</p>
     </MainTitleContainer>
   );
+};
+
+MainTitle.propTypes = {
+  title: PropTypes.string,
 };
 
 export default MainTitle;

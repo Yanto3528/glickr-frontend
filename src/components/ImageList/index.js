@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { ImageListContainer, ImageGrid } from "./styles";
 
@@ -42,5 +43,12 @@ const ImageList = React.forwardRef(
     );
   }
 );
+
+ImageList.propTypes = {
+  title: PropTypes.string.isRequired,
+  images: PropTypes.array,
+  loading: PropTypes.bool.isRequired,
+  setCurrentImageIndex: PropTypes.func.isRequired,
+};
 
 export default ImageList;
