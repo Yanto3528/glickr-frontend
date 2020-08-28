@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import { AiOutlineSearch } from "react-icons/ai";
 
@@ -7,15 +7,19 @@ import { SearchbarForm, SearchbarInput, SearchIcon } from "./styles";
 const Searchbar = ({ search }) => {
   const [tags, setTags] = useState("");
 
-  const onChange = (e) => setTags(e.target.value);
+  const onChange = useCallback((e) => setTags(e.target.value), []);
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    if (tags !== "") {
-      search(tags);
-      setTags("");
-    }
-  };
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (tags !== "") {
+        search(tags);
+        setTags("");
+      }
+    },
+    [tags]
+  );
+
   return (
     <div>
       <SearchbarForm onSubmit={onSubmit} data-testid="form">
