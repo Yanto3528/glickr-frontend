@@ -15,7 +15,10 @@ import Image from "./components/Image";
 import { Container } from "./styles/shared/Container";
 import { ErrorMessage } from "./styles/shared/ErrorMessage";
 
-axios.defaults.baseURL = "http://localhost:5000";
+axios.defaults.baseURL =
+  process.env.NODE_ENV === "production"
+    ? "https://glickr.herokuapp.com"
+    : "http://localhost:5000";
 
 const App = () => {
   const [url, setUrl] = useState("/api/images/recent");
