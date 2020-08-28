@@ -17,7 +17,7 @@ const Searchbar = ({ search }) => {
         setTags("");
       }
     },
-    [tags]
+    [tags, search]
   );
 
   return (

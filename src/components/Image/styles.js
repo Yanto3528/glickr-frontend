@@ -23,7 +23,7 @@ export const Backdrop = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-  max-width: 80%;
+  max-width: 70%;
   max-height: 100%;
   img {
     width: 100%;

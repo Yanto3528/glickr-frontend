@@ -10,7 +10,7 @@ export const ImageListContainer = styled.div`
 
 export const ImageGrid = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 20px;
   align-items: flex-start;
   img {
