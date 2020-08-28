@@ -1,13 +1,17 @@
 import React from "react";
+import { AiOutlineSearch } from "react-icons/ai";
 
-import { SearchbarContainer, SearchbarInput } from "./styles";
+import { SearchbarForm, SearchbarInput, SearchIcon } from "./styles";
 
 const Searchbar = () => {
   return (
     <div>
-      <form>
+      <SearchbarForm>
         <SearchbarInput type="text" placeholder="Search images by tags" />
-      </form>
+        <SearchIcon>
+          <AiOutlineSearch />
+        </SearchIcon>
+      </SearchbarForm>
     </div>
   );
 };
