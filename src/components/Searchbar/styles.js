@@ -9,6 +9,10 @@ export const SearchbarInput = styled.input`
   border: 1px solid ${({ theme }) => theme.lightgrey};
   border-radius: 5px;
   padding: 15px 20px;
+  transition: all 0.4s;
+  &:focus {
+    border-color: ${({ theme }) => theme.darkgrey};
+  }
 `;
 
 export const SearchIcon = styled.span`
@@ -24,5 +28,16 @@ export const SearchIcon = styled.span`
   top: 50%;
   right: 0;
   transform: translateY(-50%);
+  transition: all 0.4s;
   cursor: pointer;
+  svg {
+    transition: all 0.4s;
+  }
+  &:hover {
+    background-color: ${({ theme }) => theme.darkgrey};
+    border-color: ${({ theme }) => theme.darkgrey};
+    svg {
+      color: white;
+    }
+  }
 `;

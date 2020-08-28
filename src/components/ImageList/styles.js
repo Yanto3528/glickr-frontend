@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const ImageListContainer = styled.div`
   margin-top: 20px;
@@ -6,7 +7,7 @@ export const ImageListContainer = styled.div`
     margin-bottom: 10px;
   }
 `;
-export const ImageGrid = styled.div`
+export const ImageGrid = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
@@ -16,5 +17,10 @@ export const ImageGrid = styled.div`
     width: 100%;
     height: 300px;
     object-fit: cover;
+    cursor: pointer;
+    transition: all 0.4s;
+    &:hover {
+      transform: translateY(-5px);
+    }
   }
 `;
